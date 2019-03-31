@@ -1,38 +1,35 @@
 ﻿namespace csharp.Products
 {
-    class BackstagePass : IProduct
+    class BackstagePass : Product
     {
-        public bool IsProductType(Item item)
+        override public bool IsProductType(Item item)
         {
             return item.Name.Equals("Backstage passes to a TAFKAL80ETC concert");
         }
 
-        public void UpdateQualityAndSellIn_Daily(Item item)
+        public override void UpdateQuality(Item item)
         {
-            if (item.SellIn > 0 && item.Quality < 50)
+            item.Quality = item.SellIn > 0
+                ? GetNewQuality(item.Quality, item.SellIn)
+                : item.Quality - item.Quality;
+        }
+
+        private int GetNewQuality(int quality, int sellIn)
+        {
+            int newItemQuality = quality;
+            if (sellIn > 10)
             {
-                if (item.SellIn > 10)
-                {
-                    item.Quality++;
-                }
-                else if (item.SellIn > 5)
-                {
-                    item.Quality += 2;
-                }
-                else
-                {
-                    item.Quality += 3;
-                }
+                newItemQuality++;
             }
-
-            if (item.SellIn == 0)
+            else if (sellIn > 5)
             {
-                item.Quality = 0;
+                newItemQuality += 2;
             }
-
-            if (item.Quality > 50) item.Quality = 50;
-
-            item.SellIn--;
+            else
+            {
+                newItemQuality += 3;
+            }
+            return newItemQuality <= 50 ? newItemQuality : 50;
         }
     }
 }

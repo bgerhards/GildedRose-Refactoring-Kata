@@ -8,6 +8,6 @@
         }
 
         public void UpdateQualityAndSellIn_Daily(Item item)
-        {}
+        { }
     }
 }

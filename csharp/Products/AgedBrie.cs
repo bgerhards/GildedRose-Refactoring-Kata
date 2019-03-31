@@ -1,27 +1,20 @@
 ﻿namespace csharp.Products
 {
-    class AgedBrie : IProduct
+    class AgedBrie : Product
     {
-        public bool IsProductType(Item item)
+        override public bool IsProductType(Item item)
         {
             return item.Name.EndsWith("Aged Brie");
         }
 
-        public void UpdateQualityAndSellIn_Daily(Item item)
+        public override void UpdateQuality(Item item)
         {
             if (item.Quality < 50)
             {
-                if (item.SellIn < 1)
-                {
-                    item.Quality += 2;
-                }
-                else
-                {
-                    item.Quality++;
-                }
+                item.Quality += item.SellIn <= 0 ? 2 : 1;
             }
-
-            item.SellIn--;
         }
     }
+
+
 }
