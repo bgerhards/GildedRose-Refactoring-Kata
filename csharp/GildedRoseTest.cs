@@ -18,7 +18,7 @@ namespace csharp
         }
 
         [Test]
-        public void UpdateQualityShouldDecreaseSellInAndQualityBy2WhenSellInIs0OrLess()
+        public void UpdateQualityShouldDecreaseSellInBy1AndQualityBy2WhenSellInIs0OrLess()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 5 } };
             GildedRose app = new GildedRose(Items);
@@ -37,6 +37,28 @@ namespace csharp
 
             var item = Items[0];
             AssertItem(item, "foo", -1, 0);
+        }
+
+        [Test]
+        public void ConjuredItemsUpdateQualityShouldDecreaseSellInBy1AndQualityBy2WhenSellInAndQualityIsGreaterThan0()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured foo", SellIn = 4, Quality = 5 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+
+            var item = Items[0];
+            AssertItem(item, "Conjured foo", 3, 3);
+        }
+
+        [Test]
+        public void ConjuredItemsUpdateQualityShouldDecreaseSellInBy1AndQualityBy4WhenSellInIs0OrLess()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured foo", SellIn = 0, Quality = 5 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+
+            var item = Items[0];
+            AssertItem(item, "Conjured foo", -1, 1);
         }
 
         [Test]
