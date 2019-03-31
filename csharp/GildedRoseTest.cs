@@ -51,6 +51,17 @@ namespace csharp
         }
 
         [Test]
+        public void AgedBrieIncreasesInQualityBy2WithSellInDate0OrLess()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 8 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+
+            var item = Items[0];
+            AssertItem(item, "Aged Brie", -1, 10);
+        }
+
+        [Test]
         public void QualityOfATypicalItemNeverExceeds50()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 50 } };
