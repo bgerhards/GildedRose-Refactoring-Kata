@@ -1,12 +1,7 @@
 ﻿namespace csharp.Products
 {
-    class AgedBrie : Product
+    class AgedBrie : NormalProduct
     {
-        override public bool IsProductType(Item item)
-        {
-            return item.Name.EndsWith("Aged Brie");
-        }
-
         public override void UpdateQuality(Item item)
         {
             if (item.Quality < 50)

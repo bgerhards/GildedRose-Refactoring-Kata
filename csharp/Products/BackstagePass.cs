@@ -1,12 +1,7 @@
 ﻿namespace csharp.Products
 {
-    class BackstagePass : Product
+    class BackstagePass : NormalProduct
     {
-        override public bool IsProductType(Item item)
-        {
-            return item.Name.Equals("Backstage passes to a TAFKAL80ETC concert");
-        }
-
         public override void UpdateQuality(Item item)
         {
             item.Quality = item.SellIn > 0

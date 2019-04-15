@@ -69,8 +69,10 @@
     <Compile Include="Products\BackstagePass.cs" />
     <Compile Include="Products\Conjured.cs" />
     <Compile Include="Products\IProduct.cs" />
+    <Compile Include="Products\NormalProduct.cs" />
     <Compile Include="Products\Product.cs" />
-    <Compile Include="Products\Sulfuras.cs" />
+    <Compile Include="Products\ProductFactory.cs" />
+    <Compile Include="ProductUpdater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

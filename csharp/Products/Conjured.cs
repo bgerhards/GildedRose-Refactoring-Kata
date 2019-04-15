@@ -1,13 +1,7 @@
 ﻿namespace csharp.Products
 {
-    class Conjured : Product
+    class Conjured : NormalProduct
     {
-
-        override public bool IsProductType(Item item)
-        {
-            return item.Name.StartsWith("Conjured");
-        }
-
         override public void UpdateQuality(Item item)
         {
             if (item.Quality > 0)

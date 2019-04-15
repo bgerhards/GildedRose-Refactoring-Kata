@@ -5,17 +5,11 @@ namespace csharp
 {
     public class GildedRose
     {
-        private readonly IList<IProduct> _products;
+        private readonly ProductFactory _productFactory;
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
-            _products = new List<IProduct>();
-            _products.Add(new BackstagePass());
-            _products.Add(new AgedBrie());
-            _products.Add(new Sulfuras());
-            _products.Add(new Conjured());
-            _products.Add(new Product());
-
+            _productFactory = new ProductFactory();
             this.Items = Items;
         }
 
@@ -23,14 +17,9 @@ namespace csharp
         {
             foreach (var item in Items)
             {
-                foreach (var product in _products)
-                {
-                    if (product.IsProductType(item))
-                    {
-                        product.UpdateQualityAndSellIn_Daily(item);
-                        break;
-                    }
-                }
+                _productFactory
+                    .GetProductByName(item.Name)
+                    .UpdateQualityAndSellIn_Daily(item);
             }
         }
     }
